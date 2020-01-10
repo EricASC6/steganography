@@ -1,0 +1,27 @@
+Stenography is the practice of concealing a file, message, 
+image, or video within another file, message, image, or video. 
+It is related to cryptography and is just about as old. 
+You can use it to transport sensitive data from point A to point 
+B such that the transfer of the data is unknown. 
+This helps data to conserve its integrity. You need to create a 
+Script that encodes and decodes a text from an image(png and jpg). 
+I have attached a link showing how your output should look like.
+
+Deliverables:
+
+Submit the code in Pagure/GitHub. 
+Attach the image you encrypted along with the Asciinema 
+recording while you perform the encryption and decryption.
+
+
+To Do:
+1. Learn the basics of steganography -> LSB (/)
+2. Use PIL to get details about the carrier image including file type, 
+format details, and image size.
+3. Read a payload message or file and and add buffers and any other details required to reconstruct the message later. Optionally you could also encrypt the payload message before hiding.
+5. Determine if the carrier image is large enough to hide the payload message.
+6. Convert the payload and buffers into binary data.
+7. If the carrier image is large enough, iterate over all pixels in the 
+    carrier image and the payload message and alter the least-significant bit in 
+    each pixel to be the corresponding bit from the message. Record these new pixel values as a new image.
+If the alterations are successful, save the new image.
