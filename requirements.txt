@@ -25,3 +25,10 @@ format details, and image size.
     carrier image and the payload message and alter the least-significant bit in 
     each pixel to be the corresponding bit from the message. Record these new pixel values as a new image.
 If the alterations are successful, save the new image.
+
+
+
+
+
+Necessary Stuff:
+1. Get message -> binarray -> get binary rep of each char -> Seperate by 2 bits
