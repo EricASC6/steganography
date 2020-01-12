@@ -31,8 +31,8 @@ If the alterations are successful, save the new image.
 
 
 Necessary Stuff:
-1. Get message -> binarray -> get binary rep of each char -> Seperate by 2 bits (/)
-2. Iterate over the bytes of the pixels and change the last 2 bits (/)
+1. Get message -> binarray -> get binary rep of each char -> Seperate by 2 bits ()
+2. Iterate over the bytes of the pixels and change the last 2 bits ()
 3. Save the image
 
 * I need a way to figure out how many bytes to decrypt during the decryption process

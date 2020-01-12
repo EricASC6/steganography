@@ -2,14 +2,15 @@ import sys
 import stegapy as stp
 import time
 
-img_path = "image.jpg"
-encoded_img_path = "./encoded_img.jpg"
-message = "Hello my name is eric chen and I go the high school for math science and engineering"
+img_path = "img.jpg"
+decode_path = "encoded_img.png"
+message = "H"
 
 
 def main():
     stp.encrypt(img_path, message)
-    # stp.decrypt(encoded_img_path)
+    stp.decrypt(decode_path)
 
 
-main()
+if __name__ == "__main__":
+    main()
