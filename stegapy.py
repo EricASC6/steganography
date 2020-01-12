@@ -44,9 +44,7 @@ def get_binary_from_str(string):
 def encode_size(img_binary, string):
     size = len(string)
     size_bin = to_binary(size)
-    print("size -> " + str(size))
     least_sig_bits = get_least_sig_bits([size_bin])
-    print(least_sig_bits)
     for i in range(4):
         img_binary[i] = img_binary[i][0:-2] + least_sig_bits[i]
 
@@ -54,12 +52,9 @@ def encode_size(img_binary, string):
 def encode_message(img_binary, string):
     str_binary = get_binary_from_str(string)
     least_sig_bits = get_least_sig_bits(str_binary)
-    print("str binary: -> " + string)
-    print(least_sig_bits)
     for i in range(4, int(4 + (len(string) * 8)/2)):
         sig = least_sig_bits[i - 4]
         img_binary[i] = img_binary[i][0:-2] + sig
-        print(img_binary[i])
 
 
 def create_img_array(img_binary):
@@ -73,21 +68,27 @@ def encrypt(img_path, message):
     img_binary = get_binary_from_img(img_path)
     encode_size(img_binary, message)
     encode_message(img_binary, message)
-    print(img_binary[0: 8])
     dec_lst_bytes = to_dec_arr(img_binary)
     img_array = create_img_array(dec_lst_bytes)
-    print(img_array)
     encoded_img = Image.frombytes("RGB", (400, 400), img_array)
     encoded_img.save("./encoded_img.png")
     encoded_img.show()
 
 
 # Decryption functions
-def get_size(img_path):
-    img = Image.open(img_path)
-    img_binary = np.asarray(img)
-    print(img_binary)
+def get_size(img_binary):
+    size_bin = "".join([byte[-2:] for byte in img_binary[:4]])
+    size = to_num(size_bin)
+    return size
 
 
 def decrypt(img_path):
-    get_size(img_path)
+    img_binary = get_binary_from_img(img_path)
+    size = int((get_size(img_binary) * 8) / 2)
+    message_bin = ""
+    for i in range(4, 4 + size):
+        message_bin += img_binary[i][-2:]
+
+    chars = [message_bin[i:i+8] for i in range(0, len(message_bin) - 7, 8)]
+    decrypted_message = "".join([chr(to_num(char)) for char in chars])
+    print(decrypted_message)
